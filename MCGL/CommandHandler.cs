@@ -185,6 +185,7 @@ namespace MCGL
             short current = 0;
             short currentList = 0;
 
+            int maxWidth = 0;
             int width = 32;
 
             for (int i = 0; i < commands.Length;)
@@ -196,6 +197,7 @@ namespace MCGL
                     saveCommands[currentList].Add(command);
                     current++;
                     i++;
+                    maxWidth++;
                 }
                 else if (command.type == CommandType.CHAIN_CONDITIONAL)
                 {
@@ -212,6 +214,9 @@ namespace MCGL
                     currentList++;
                 }
             }
+
+            if (maxWidth < width)
+                width = maxWidth;
 
             int height = 1;
             int length = saveCommands.Count;
